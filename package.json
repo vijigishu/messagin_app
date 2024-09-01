@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "axios": "^1.7.6",
+    "franc": "^6.2.0",
+    "langdetect": "^0.2.1",
+    "langs": "^2.0.0"
+  }
+}
