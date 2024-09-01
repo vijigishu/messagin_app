@@ -21,14 +21,18 @@ const sendMessage = asyncHandler(async (req, res) => {
   try {
     let message = await Message.create(newMessage);
 
-    message = await message.populate("sender", "username pic").execPopulate();
-    message = await message.populate("chat").execPopulate();
+    // Populate sender and chat fields
+    message = await Message.findById(message._id)
+      .populate("sender", "username pic")
+      .populate("chat")
+      .exec();
+
     message = await User.populate(message, {
       path: "chat.users",
       select: "username pic email",
     });
 
-    await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: message });
+    await Chat.findByIdAndUpdate(chatId, { latestMessage: message });
 
     res.json(message);
   } catch (error) {
