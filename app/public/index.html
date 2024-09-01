@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <section class="chat__section">
+        <div class="brand"> 
+            <img height="40" style="border-radius: 50%;" src="/sp.jpg" alt="">
+            <h1 id="chatTitle">Chat</h1>
+        </div>
+        <div class="message__area">
+            <!-- Messages will appear here -->
+        </div>
+        <div>
+            <textarea id="textarea" cols="30" rows="1" placeholder="Write a message"></textarea>
+        </div>
+    </section>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+    <script>
+        // Function to capitalize the first letter and lowercase the rest
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        }
+
+        // Prompt user for their name
+        let userName = '';
+        while (!userName) {
+            userName = prompt('Please enter your name:');
+        }
+        
+        // Capitalize the first letter and lowercase the rest
+        userName = capitalizeFirstLetter(userName);
+        
+        // Replace "Chat" with the user's name in the title
+        document.getElementById('chatTitle').innerText = userName;
+
+    </script>
+</body>
+</html>
